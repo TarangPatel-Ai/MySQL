@@ -2,3 +2,110 @@ SQL commands
 sudo mysql -h <IPADDRESS> -u root -p
 
 sudo mysql -u root -p
+
+CREATE A NEW DATABASE
+    create database users;
+
+LIST All Databases;
+    show databases;
+
+CREATING TABLES
+    Use users;
+    CREATE TABLE users(username varchar(80), password varchar(12), age int );
+
+INFO about table structure:
+    describe users;
+
+Store some data
+    INSERT INTO users values('Thor', '56@##', 45);
+
+RETRIEVE / FETCH / SEARCH the data in the table
+    SELECT * FROM users;
+
+Adding more data
+    mysql> INSERT INTO users values('Tony Stark', '5e66ve%6##', 28);
+    Query OK, 1 row affected (0.01 sec)
+
+    INSERT INTO users values('Sujata', '8888RR6##', 48);
+    INSERT INTO users values('Sharon', 'uud8RR6##', 48);
+    INSERT INTO users(username,age) values('Jane', 58);
+    INSERT INTO users values('Z12', '888dff8RR6##', 34);
+    INSERT INTO users values('Z13', 'uudggg8RR6##', 34);
+    INSERT INTO users(username,age) values('Z14', 50);
+
+SELECTING ONLY particular column data
+    Select username, age from users;
+
+
+CONDITION BASED Selection 
+    SELECT * from users WHERE age>50;
+
+WHERE and LIKE
+    PROBLEM - Fetch all usernames starts with S and end with a and age greater than 50
+    select * from user where username like 'S%a' and age>50
+
+WHERE and IN
+    SELECT * FROM users WHERE username IN ('Z14', 'Sujata', 'Jane');
+
+ORDERING
+    SELECT * FROM users Order By username;
+    SELECT * FROM users Order By username DESC;
+
+Fetch all users such that lesser age users are listed first
+    select * from users order by age;
+
+ALIASES for Column name or Expressions
+    SELECT COUNT(*) AS NO_OF_USERS FROM users;
+
+WHERE and GROUP BY
+    select username, SUM(age) FROM users GROUP BY username;
+
+ADDING NEW COULMNS to an Existing Table
+    ALTER table users ADD COLUMN CITY varchar(80);
+
+UPDATING / MODIFYING TABLE DATA
+    UPDATE users SET age=50 WHERE username like 'Z%';
+
+DELETING TABLE DATA
+    DELETE  FROM users WHERE username like 'Z%';
+
+PROBLEM: How will your delete an existing column from a table
+    ALTER TABLE users DROP COLUMN CITY; 
+
+DROP TABLE users; // BE CAUTIOUS, all data will be lost!    
+
+
+Practice:
+
+Create Table
+    CREATE TABLE Product (PRODUCT_ID int AUTO_INCREMENT PRIMARY KEY, PRODUCT_NAME varchar(80));
+
+Insert Data
+    INSERT INTO Product(PRODUCT_NAME) VALUES('Samsung S23');
+    INSERT INTO Product(PRODUCT_NAME) VALUES('IPhone 14');
+    INSERT INTO Product(PRODUCT_NAME) VALUES('One Plus');
+
+
+   
+MySQL Security and Root Superuser
+=================================
+
+CREATING USERS
+    CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
+    OR
+    CREATE USER user1 IDENTIFIED BY user123
+    CREATE USER 'user1' IDENTIFIED BY 'Pass1***^^%';
+
+GRANT
+    GRANT ALL PRIVILEGES ON *.* TO 'user1';
+    OR
+    GRANT SELECT, INSERT ON *.* TO 'user1';
+
+NOTE: 
+    The first start in *.* above refers to the database and second refers to the 
+    objects(tables, SP, triggers, views..) in the database.
+    
+    GRANT ALL PRIVILEGES ON estore.Product TO 'user1';
+    GRANT ALL PRIVILEGES ON estore.* TO 'user1';
+
+
