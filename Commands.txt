@@ -91,13 +91,13 @@ MySQL Security and Root Superuser
 =================================
 
 CREATING USERS
-    CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
+    CREATE USER 'admin'@'localhost' IDENTIFIED BY <password>;
     OR
-    CREATE USER user1 IDENTIFIED BY user123
+    CREATE USER 'admin' IDENTIFIED BY 'Pass123***^^%';
     CREATE USER 'user1' IDENTIFIED BY 'Pass1***^^%';
 
 GRANT
-    GRANT ALL PRIVILEGES ON *.* TO 'user1';
+    GRANT ALL PRIVILEGES ON *.* TO 'admin';
     OR
     GRANT SELECT, INSERT ON *.* TO 'user1';
 
@@ -106,6 +106,8 @@ NOTE:
     objects(tables, SP, triggers, views..) in the database.
     
     GRANT ALL PRIVILEGES ON estore.Product TO 'user1';
-    GRANT ALL PRIVILEGES ON estore.* TO 'user1';
+    GRANT ALL PRIVILEGES ON estore.* TO 'admin';
+
+    
 
 
