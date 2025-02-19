@@ -1,0 +1,4 @@
+SQL commands
+sudo mysql -h <IPADDRESS> -u root -p
+
+sudo mysql -u root -p
